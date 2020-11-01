@@ -7,14 +7,14 @@ void PrintArray(int arr[], int _x) {
 
 	int _i;
 	for (_i = 0; _i < _x; _i++)
-	printf("%d", arr[_i]);
+		printf("%d", arr[_i]);
 	printf("\n", arr[_i]);
 }
 void PrintArrayChar(char arr[], int _x) {
 
 	int _i;
 	for (_i = 0; _i < _x; _i++)
-	printf("%c", arr[_i]);
+		printf("%c", arr[_i]);
 	printf("\n", arr[_i]);
 }
 
@@ -24,7 +24,7 @@ void Swap(int* _x, int* _y)
 	*_x = *_y;
 	*_y = _temp;
 }
-void SwapChar(char *_x, char *_y)
+void SwapChar(char* _x, char* _y)
 {
 	char _temp = *_x;
 	*_x = *_y;
@@ -36,11 +36,11 @@ void InsertionSort(int arr[], int _k) {
 	for (_i = 1; _i < _k; _i++)
 	{
 		_key = arr[_i];
-		
-		for (_j=_i-1;_j >= 0 && arr[_j] > _key;--_j)
+
+		for (_j = _i - 1; _j >= 0 && arr[_j] > _key; --_j)
 		{
 			arr[_j + 1] = arr[_j];
-			
+
 		}
 		arr[_j + 1] = _key;
 	}
@@ -62,16 +62,16 @@ void InsertionSortChar(char array[], int _k)
 
 
 /* Selection Sort */
-void SelectionSort(int array[],int _size)
+void SelectionSort(int array[], int _size)
 {
-	int _i,_j;
+	int _i, _j;
 	int currentMin;
-	for ( _i = 0; _i < _size - 1; _i++)
+	for (_i = 0; _i < _size - 1; _i++)
 	{
 		currentMin = _i;
 		for (_j = _i + 1; _j < _size; _j++)
 		{
-			if(array[_j]<array[currentMin])
+			if (array[_j] < array[currentMin])
 			{
 				currentMin = _j;
 			}
@@ -99,7 +99,7 @@ void Merge(int arr[], int _l, int _m, int _r)
 {
 	int _i, _a, _b;
 	int _p1 = _m - _l + 1;
-	int _p2 = _r -_m;
+	int _p2 = _r - _m;
 
 	int L[_p1];
 	int R[_p2];
@@ -153,7 +153,7 @@ void MergeSort(int arr[], int _l, int _r)
 		MergeSort(arr, _l, _m);
 		MergeSort(arr, _m + 1, _r);
 
-		Merge(arr, _l,_m, _r);
+		Merge(arr, _l, _m, _r);
 	}
 }
 
@@ -179,80 +179,217 @@ void BubbleSortChar(char array[], int _n)
 
 void MergeChar(char arr[], int _a, int _b, int _c)
 {
-    int _j, _i , _m, _k, _n;
+	int _j, _i, _m, _k, _n;
 
-    _m = _b - _a + 1;
+	_m = _b - _a + 1;
 
-    _n = _c - _b;
+	_n = _c - _b;
 
-    int A[_m], B[_n];
+	int A[_m], B[_n];
 
-    for (_i = 0; _i < _m; _i++)
+	for (_i = 0; _i < _m; _i++)
 
-        A[_i] = arr[_a + _i];
-    for (_j = 0; _j < _n; _j++)
+		A[_i] = arr[_a + _i];
+	for (_j = 0; _j < _n; _j++)
 
 
-        B[_j] = arr[_b + 1 + _j];
-    _i = 0;
-    _j = 0;
-    _k = _a;
+		B[_j] = arr[_b + 1 + _j];
+	_i = 0;
+	_j = 0;
+	_k = _a;
 
-    while (_i < _m && _j < _n)
-    {
-        if (A[_i] <= B[_j])
-        {
-            arr[_k] = A[_i];
-            _i++;
-        }
-        else {
-            arr[_k] = B[_j];
-            _j++;
-        }
-       _k++;
-    }
+	while (_i < _m && _j < _n)
+	{
+		if (A[_i] <= B[_j])
+		{
+			arr[_k] = A[_i];
+			_i++;
+		}
+		else {
+			arr[_k] = B[_j];
+			_j++;
+		}
+		_k++;
+	}
 
-    while (_i < _m)
-    {
-        arr[_k] = A[_i];
-        _i++;
-        _k++;
-    }
+	while (_i < _m)
+	{
+		arr[_k] = A[_i];
+		_i++;
+		_k++;
+	}
 
-    while (_j < _n) {
-        arr[_k] = B[_j];
-        _j++;
-        _k++;
-    }
+	while (_j < _n) {
+		arr[_k] = B[_j];
+		_j++;
+		_k++;
+	}
 }
 
 void MergeSortChar(char arr[], int _r, int _l)
 {
-    if (_l < _r) {
-        int _m = _l + (_r - _l) / 2;
-        MergeSortChar(arr, _l, _m);
-        MergeSortChar(arr, _m + 1, _r);
-        MergeChar(arr, _l, _m, _r);
-    }
+	if (_l < _r) {
+		int _m = _l + (_r - _l) / 2;
+		MergeSortChar(arr, _l, _m);
+		MergeSortChar(arr, _m + 1, _r);
+		MergeChar(arr, _l, _m, _r);
+	}
+}
+
+int Partition(int arr[], int _low, int _high)
+{
+	int _pivot = arr[_high];
+	int _i = (_low - 1);
+
+	int _j;
+	for (_j = _low; _j <= _high - 1; _j++)
+	{
+
+		if (arr[_j] < _pivot)
+		{
+			_i++;
+			Swap(&arr[_i], &arr[_j]);
+		}
+	}
+	Swap(&arr[_i + 1], &arr[_high]);
+	return (_i + 1);
+}
+
+
+void QuickSort(int arr[], int _low, int _high)
+{
+	if (_low < _high)
+	{
+
+		int _pi = Partition(arr, _low, _high);
+
+
+		QuickSort(arr, _low, _pi - 1);
+		QuickSort(arr, _pi + 1, _high);
+	}
+}
+
+int PartitionChar(char arr[], int _low, int _high)
+{
+	int _pivot = arr[_high];
+	int _i = (_low - 1);
+
+	int _j;
+	for (_j = _low; _j <= _high - 1; _j++)
+	{
+
+		if (arr[_j] < _pivot)
+		{
+			_i++;
+			SwapChar(&arr[_i], &arr[_j]);
+		}
+	}
+	SwapChar(&arr[_i + 1], &arr[_high]);
+	return (_i + 1);
+}
+
+
+void QuickSortChar(char arr[], int _low, int _high)
+{
+	if (_low < _high)
+	{
+
+		int _pi = PartitionChar(arr, _low, _high);
+
+
+		QuickSortChar(arr, _low, _pi - 1);
+		QuickSortChar(arr, _pi + 1, _high);
+	}
+}
+
+void Heapify(int arr[], int _n, int _i) {
+
+	int _largest = _i;
+	int _left = 2 * _i + 1;
+	int _right = 2 * _i + 2;
+
+	if (_left < _n && arr[_left] > arr[_largest])
+		_largest = _left;
+
+	if (_right < _n && arr[_right] > arr[_largest])
+		_largest = _right;
+
+
+	if (_largest != _i) {
+		Swap(&arr[_i], &arr[_largest]);
+		Heapify(arr, _n, _largest);
+	}
+}
+
+
+void HeapSort(int arr[], int _n) {
+
+	int _i;
+	for (_i = _n / 2 - 1; _i >= 0; _i--)
+		Heapify(arr, _n, _i);
+
+
+	int _k;
+	for (_k = _n - 1; _k >= 0; _k--) {
+		Swap(&arr[0], &arr[_k]);
+
+
+		Heapify(arr, _k, 0);
+	}
+}
+void HeapifyChar(char arr[], int _n, int _i) {
+
+	int _largest = _i;
+	int _left = 2 * _i + 1;
+	int _right = 2 * _i + 2;
+
+	if (_left < _n && arr[_left] > arr[_largest])
+		_largest = _left;
+
+	if (_right < _n && arr[_right] > arr[_largest])
+		_largest = _right;
+
+
+	if (_largest != _i) {
+		SwapChar(&arr[_i], &arr[_largest]);
+		HeapifyChar(arr, _n, _largest);
+	}
+}
+
+
+void HeapSortChar(char arr[], int _n) {
+
+	int _i;
+	for (_i = _n / 2 - 1; _i >= 0; _i--)
+		HeapifyChar(arr, _n, _i);
+
+
+	int _k;
+	for (_k = _n - 1; _k >= 0; _k--) {
+		SwapChar(&arr[0], &arr[_k]);
+
+
+		HeapifyChar(arr, _k, 0);
+	}
 }
 
 int main(int argc, char const* argv[])
 {
-	
 
-	int num[] = {2,0,1,9,5,5,6,4,5,7};
+
+	int num[] = { 2,0,1,9,5,5,6,4,5,7 };
 	char name[] = "Engin Cem Arikan";
 	int _size = sizeof(num) / sizeof(num[0]);
-	int sizeName= strlen(name);
+	int sizeName = strlen(name);
 	clock_t c1, c2;
 	double timeResult;
 
 
 	//insertionsort
-	
+	printf("Insertion Sort:\n\n");
 	c1 = clock();
 	InsertionSort(num, _size);
-	
+
 	PrintArray(num, _size);
 	c2 = clock();
 	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
@@ -260,34 +397,33 @@ int main(int argc, char const* argv[])
 
 	c1 = clock();
 	InsertionSortChar(name, sizeName);
-	
+
 	PrintArrayChar(name, sizeName);
 	c2 = clock();
 	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
 	printf("Time = %f\n\n", timeResult);
-	//end of insertionsort
-	
+
+
 	//selectionsort
-	
+	printf("Selection Sort:\n\n");
 	c1 = clock();
 	SelectionSort(num, _size);
-	
+
 	PrintArray(num, _size);
 	c2 = clock();
 	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
 	printf("Time = %f\n\n", timeResult);
-	c1 = clock();	
+	c1 = clock();
 	SelectionSortChar(name, sizeName);
 
 	PrintArrayChar(name, sizeName);
 	c2 = clock();
 	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
-	//print time
 	printf("Time = %f\n\n", timeResult);
 
-	
-	//bublesort
-	
+
+	//bubblesort
+	printf("Bubble Sort:\n\n");
 	c1 = clock();
 	BubbleSort(num, _size);
 
@@ -302,26 +438,62 @@ int main(int argc, char const* argv[])
 	c2 = clock();
 	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
 	printf("Time = %f\n\n", timeResult);
-	
-	
+
+
 	//merge sort
-	
+	printf("Merge Sort:\n\n");
 	c1 = clock();
-	MergeSort(num,0, _size-1);
-	
+	MergeSort(num, 0, _size - 1);
+
 	PrintArray(num, _size);
 	c2 = clock();
 	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
 	printf("Time = %f\n\n", timeResult);
 	c1 = clock();
-	MergeSortChar(name,0, sizeName-1);
+	MergeSortChar(name, 0, sizeName - 1);
 
 	PrintArrayChar(name, sizeName);
 	c2 = clock();
 	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
 	printf("Time = %f\n\n", timeResult);
 
-	
+	//quick sort
+	printf("Quick Sort:\n\n");
+	c1 = clock();
+	QuickSort(num, 0, _size - 1);
+
+	PrintArray(num, _size);
+	c2 = clock();
+	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
+	printf("Time = %f\n\n", timeResult);
+	c1 = clock();
+	QuickSortChar(name, 0, sizeName - 1);
+
+	PrintArrayChar(name, sizeName);
+	c2 = clock();
+	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
+	printf("Time = %f\n\n", timeResult);
+
+	//heap sort
+	printf("Heap Sort:\n\n");
+	c1 = clock();
+	HeapSort(num, _size);
+
+	PrintArray(num, _size);
+	c2 = clock();
+	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
+	printf("Time = %f\n\n", timeResult);
+	c1 = clock();
+	HeapSortChar(name, sizeName);
+
+	PrintArrayChar(name, sizeName);
+	c2 = clock();
+	timeResult = (double)(c2 - c1) / CLOCKS_PER_SEC;
+	printf("Time = %f\n\n", timeResult);
+
+
+
+
 	printf("2019556457-Engin Cem Arikan");
 	return 0;
 }
